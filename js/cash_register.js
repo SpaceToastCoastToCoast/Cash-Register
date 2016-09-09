@@ -15,7 +15,11 @@ function CashRegister() {
 
   //converts buffer of numbers in the display to a usable format
   cashRegister.convertInput = function() {
-    return parseInt(buffer.join(""));
+    if(buffer.length > 0) {
+      return parseInt(buffer.join(""));
+    } else {
+      return 0;
+    }
   };
 
   //load the value in the buffer into the calculator
@@ -49,13 +53,13 @@ function CashRegister() {
   //write what's in the buffer to the display
   cashRegister.updateDisplay = function() {
     //'$' + toFixed()
-    document.getElementById('display').innerHTML = ('$' + this.convertInput().toFixed());
+    document.getElementById('display').innerHTML = ('$' + this.convertInput().toFixed(2));
   };
 
   //write what's in a value to the display (overloaded)
   cashRegister.updateDisplayByInput = function(input) {
     //'$' + toFixed()
-    document.getElementById('display').innerHTML = ('$' + input.toFixed());
+    document.getElementById('display').innerHTML = ('$' + input.toFixed(2));
   };
 
   //set display to 0
