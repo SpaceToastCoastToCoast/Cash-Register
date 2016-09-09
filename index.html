@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cash Register</title>
+</head>
+<style>
+  #display {
+    background-color: #A0A0A0;
+    border: 5px solid #606060;
+    padding: 5px;
+    width: 244px;
+  }
+  #main-button-host {
+    position: absolute;
+    background-color: #808080;
+    padding: 5px;
+    width: 254px;
+    height: 120px;
+  }
+  #number-buttons {
+    background-color: #A0A0A0;
+    width: 100px;
+    float: left;
+    padding: 5px;
+  }
+  #operator-buttons {
+    background-color: #A0A0A0;
+    float: left;
+    width: 24px;
+    padding: 5px;
+  }
+  #balance-buttons {
+    background-color: #A0A0A0;
+    float: left;
+    width: 100px;
+    padding: 5px;
+  }
+</style>
+<body>
+<h1>Cash Register</h1>
+  <div id="display">$0.00</div>
+  <div id="main-button-host">
+    <div id="number-buttons">
+      <button type ="button" id="seven">7</button>
+      <button type ="button" id="eight">8</button>
+      <button type ="button" id="nine">9</button>
+      <button type ="button" id="four">4</button>
+      <button type ="button" id="five">5</button>
+      <button type ="button" id="six">6</button>
+      <button type ="button" id="one">1</button>
+      <button type ="button" id="two">2</button>
+      <button type ="button" id="three">3</button>
+      <button type ="button" id="zero">0</button>
+      <button type ="button" id="doublezero">00</button>
+      <button type ="button" id="decimal">.</button>
+    </div>
+    <div id="operator-buttons">
+      <button type ="button" id="divide">÷</button>
+      <button type ="button" id="multiply">×</button>
+      <button type ="button" id="subtract">-</button>
+      <button type ="button" id="add">+</button>
+      <button type ="button" id="equals">=</button>
+    </div>
+    <div id="balance-buttons">
+      <button type ="button" id="clear">clear</button>
+      <button type ="button" id="getbalance">get balance</button>
+      <button type ="button" id="deposit">deposit cash</button>
+      <button type ="button" id="withdraw">withdraw cash</button>
+    </div>
+  </div>
+  <script type="text/javascript" src="./js/calculator.js" id="calc"></script>
+  <script type="text/javascript" src="./js/cash_register.js"></script>
+</body>
+</html>
