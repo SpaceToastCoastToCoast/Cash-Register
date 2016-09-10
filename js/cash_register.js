@@ -88,6 +88,7 @@ function CashRegister() {
     }
     opState = [];
     cashRegister.getTotal();
+    clearFlag = true;
   };
 
   //write what's in the display to the register's balance
