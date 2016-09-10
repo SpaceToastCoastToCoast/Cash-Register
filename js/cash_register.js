@@ -102,8 +102,15 @@ function CashRegister() {
   //remove the amount that's in the display from the saved balance
   cashRegister.withdrawCash = function() {
     let balParse = parseFloat(document.getElementById('display').innerHTML.slice(1));
-    balParse = (cashRegister.calc.recallMemory()) - balParse;
-    cashRegister.calc.load(balParse);
+    currentBal = cashRegister.calc.recallMemory();
+    balParse = (currentBal - balParse);
+    if(balParse >= 0) {
+      cashRegister.calc.load(balParse);
+    } else {
+      clearInterval(upd);
+      document.getElementById('display').innerHTML = "Insufficient funds";
+      setTimeout(function(){upd = setInterval(reg.updateDisplay, 100);}, 1000);
+    }
     cashRegister.calc.saveMemory();
     cashRegister.clearBuffer();
   };
@@ -130,7 +137,7 @@ function CashRegister() {
 
 var reg = CashRegister();
 reg.load();
-setInterval(reg.updateDisplay, 100);
+var upd = setInterval(reg.updateDisplay, 100);
 
 document.getElementById("equals").addEventListener("click", reg.equals);
 document.getElementById("clear").addEventListener("click", reg.clearBuffer);
