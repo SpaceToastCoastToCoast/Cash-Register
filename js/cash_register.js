@@ -89,19 +89,22 @@ function CashRegister() {
   //write what's in the display to the register's balance
   cashRegister.depositCash = function() {
     let balParse = document.getElementById('display').innerHTML.slice(1);
-    balance += parseFloat(balParse);
+    cashRegister.calc.add(parseFloat(balParse));
+    cashRegister.calc.saveMemory();
     cashRegister.clearBuffer();
   };
 
+  //remove the amount that's in the display from the saved balance
   cashRegister.withdrawCash = function() {
     let balParse = document.getElementById('display').innerHTML.slice(1);
-    balance -= parseFloat(balParse);
+    cashRegister.calc.subtract(parseFloat(balParse));
+    cashRegister.calc.saveMemory();
     cashRegister.clearBuffer();
   };
 
   cashRegister.getBalance = function() {
     cashRegister.clearBuffer();
-    buffer[0] = balance * 100;
+    buffer[0] = cashRegister.calc.recallMemory() * 100;
   };
 
   //write what's in the buffer to the display
