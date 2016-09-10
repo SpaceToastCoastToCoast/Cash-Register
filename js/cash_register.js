@@ -152,4 +152,3 @@ document.getElementById("eight").addEventListener("click", function(){reg.buffer
 document.getElementById("nine").addEventListener("click", function(){reg.bufferInput(9);});
 document.getElementById("zero").addEventListener("click", function(){reg.bufferInput(0);});
 document.getElementById("doublezero").addEventListener("click", function(){reg.bufferInput(0); reg.bufferInput(0);});
-document.getElementById("decimal").addEventListener("click", function(){reg.bufferInput('.');});
