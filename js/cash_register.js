@@ -76,7 +76,9 @@ function CashRegister() {
           case 'd':
             cashRegister.calc.divide(num);
             break;
-            default: break;
+          default:
+            cashRegister.calc.load(0);
+            break;
         }
       }
     }
@@ -92,7 +94,8 @@ function CashRegister() {
   };
 
   cashRegister.withdrawCash = function() {
-    balance -= parseInt(document.getElementById('display').innerHTML);
+    let balParse = document.getElementById('display').innerHTML.slice(1);
+    balance -= parseFloat(balParse);
     cashRegister.clearBuffer();
   };
 
@@ -112,10 +115,6 @@ function CashRegister() {
     buffer = [];
   };
 
-  //set display to 0
-  cashRegister.clearDisplay = function() {
-    document.getElementById('display').innerHTML = ('$' + parseInt(0).toFixed(2));
-  };
   return cashRegister;
 }
 
@@ -124,7 +123,7 @@ reg.load();
 setInterval(reg.updateDisplay, 100);
 
 document.getElementById("equals").addEventListener("click", reg.equals);
-document.getElementById("clear").addEventListener("click", reg.clear);
+document.getElementById("clear").addEventListener("click", reg.clearBuffer);
 document.getElementById("add").addEventListener("click", reg.add);
 document.getElementById("subtract").addEventListener("click", reg.subtract);
 document.getElementById("multiply").addEventListener("click", reg.multiply);
