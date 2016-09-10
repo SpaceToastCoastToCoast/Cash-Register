@@ -1,4 +1,4 @@
-function Calculator() {
+const calculator = (function() {
   let _memory;
   let _total;
 
@@ -67,4 +67,4 @@ function Calculator() {
   };
 
   return calculator;
-}
+});
