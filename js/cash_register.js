@@ -3,14 +3,18 @@ const myCalc = calculator();
 function CashRegister() {
   let cashRegister = {};
   let buffer = [];
-  let balance = 0;
   let opState = [];
+  let clearFlag = false;
 
   //give the cash register a calculator
   cashRegister.calc = myCalc;
 
   //add each number pressed to a buffer
   cashRegister.bufferInput = function (input) {
+    if(clearFlag) {
+      cashRegister.clearBuffer();
+      clearFlag = false;
+    }
     buffer.push(input);
   };
 
@@ -88,16 +92,18 @@ function CashRegister() {
 
   //write what's in the display to the register's balance
   cashRegister.depositCash = function() {
-    let balParse = document.getElementById('display').innerHTML.slice(1);
-    cashRegister.calc.add(parseFloat(balParse));
+    let balParse = parseFloat(document.getElementById('display').innerHTML.slice(1));
+    balParse = (cashRegister.calc.recallMemory()) + balParse;
+    cashRegister.calc.load(balParse);
     cashRegister.calc.saveMemory();
     cashRegister.clearBuffer();
   };
 
   //remove the amount that's in the display from the saved balance
   cashRegister.withdrawCash = function() {
-    let balParse = document.getElementById('display').innerHTML.slice(1);
-    cashRegister.calc.subtract(parseFloat(balParse));
+    let balParse = parseFloat(document.getElementById('display').innerHTML.slice(1));
+    balParse = (cashRegister.calc.recallMemory()) - balParse;
+    cashRegister.calc.load(balParse);
     cashRegister.calc.saveMemory();
     cashRegister.clearBuffer();
   };
@@ -105,6 +111,7 @@ function CashRegister() {
   cashRegister.getBalance = function() {
     cashRegister.clearBuffer();
     buffer[0] = cashRegister.calc.recallMemory() * 100;
+    clearFlag = true;
   };
 
   //write what's in the buffer to the display
