@@ -7,8 +7,16 @@
 <style>
   button {
     background-color: #504840;
+    border: 2px outset #908880;
     color: #FFFCEE;
     margin-bottom: 2px;
+  }
+  #container {
+    border: 5px outset #D0C8C0;
+    background-color: #A09890;
+    padding: 5px;
+    width: 264px;
+    height: 173px;
   }
   #display {
     background-color: #A8C0A0;
@@ -32,12 +40,14 @@
     padding: 5px;
   }
   #operator-buttons {
+    text-align: center;
     background-color: #706860;
     float: left;
     width: 24px;
     padding: 5px;
   }
   #balance-buttons {
+    text-align: right;
     background-color: #706860;
     float: left;
     width: 100px;
@@ -46,34 +56,36 @@
 </style>
 <body>
 <h1>Cash Register</h1>
-  <div id="display">$0.00</div>
-  <div id="main-button-host">
-    <div id="number-buttons">
-      <button type ="button" id="seven">7</button>
-      <button type ="button" id="eight">8</button>
-      <button type ="button" id="nine">9</button>
-      <button type ="button" id="four">4</button>
-      <button type ="button" id="five">5</button>
-      <button type ="button" id="six">6</button>
-      <button type ="button" id="one">1</button>
-      <button type ="button" id="two">2</button>
-      <button type ="button" id="three">3</button>
-      <button type ="button" id="zero">0</button>
-      <button type ="button" id="doublezero">00</button>
-      <button type ="button" id="decimal">.</button>
-    </div>
-    <div id="operator-buttons">
-      <button type ="button" id="divide">÷</button>
-      <button type ="button" id="multiply">×</button>
-      <button type ="button" id="subtract">-</button>
-      <button type ="button" id="add">+</button>
-      <button type ="button" id="equals">=</button>
-    </div>
-    <div id="balance-buttons">
-      <button type ="button" id="clear">clear</button>
-      <button type ="button" id="getbalance">get balance</button>
-      <button type ="button" id="deposit">deposit cash</button>
-      <button type ="button" id="withdraw">withdraw cash</button>
+  <div id="container">
+    <div id="display">$0.00</div>
+    <div id="main-button-host">
+      <div id="number-buttons">
+        <button type ="button" id="seven">7</button>
+        <button type ="button" id="eight">8</button>
+        <button type ="button" id="nine">9</button>
+        <button type ="button" id="four">4</button>
+        <button type ="button" id="five">5</button>
+        <button type ="button" id="six">6</button>
+        <button type ="button" id="one">1</button>
+        <button type ="button" id="two">2</button>
+        <button type ="button" id="three">3</button>
+        <button type ="button" id="zero">0</button>
+        <button type ="button" id="doublezero">00</button>
+        <button type ="button" id="decimal">.</button>
+      </div>
+      <div id="operator-buttons">
+        <button type ="button" id="divide">÷</button>
+        <button type ="button" id="multiply">×</button>
+        <button type ="button" id="subtract">-</button>
+        <button type ="button" id="add">+</button>
+        <button type ="button" id="equals">=</button>
+      </div>
+      <div id="balance-buttons">
+        <button type ="button" id="clear">clear</button>
+        <button type ="button" id="getbalance">get balance</button>
+        <button type ="button" id="deposit">deposit cash</button>
+        <button type ="button" id="withdraw">withdraw cash</button>
+      </div>
     </div>
   </div>
   <script type="text/javascript" src="./js/calculator.js" id="calc"></script>
