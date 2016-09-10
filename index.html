@@ -9,42 +9,63 @@
     background-color: #504840;
     border: 2px outset #908880;
     color: #FFFCEE;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
+  }
+  .numButton {
+    width: 28px;
+  }
+  .opButton {
+    width: 28px;
+  }
+  .balButton {
+    width: 100px;
   }
   #container {
     border: 5px outset #D0C8C0;
     background-color: #A09890;
     padding: 5px;
     width: 264px;
-    height: 173px;
+    height: 198px;
   }
   #display {
     background-color: #A8C0A0;
     text-align: right;
     font-family: monospace;
-    border: 5px solid #706860;
+    border: 5px inset #706860;
     padding: 5px;
+    margin-bottom: 5px;
     width: 244px;
+  }
+  #logo {
+    width: 264px;
+    position: absolute;
+    text-align: center;
+    font-family: sans-serif;
+    font-style: italic;
+    color: #FFFCEE;
   }
   #main-button-host {
     position: absolute;
     background-color: #A09890;
     padding: 5px;
+    padding-top: 20px;
     width: 254px;
     height: 128px;
   }
   #number-buttons {
     background-color: #706860;
-    width: 100px;
+    width: 92px;
     float: left;
     padding: 5px;
+    padding-bottom: 1px;
   }
   #operator-buttons {
     text-align: center;
     background-color: #706860;
     float: left;
-    width: 24px;
+    width: 28px;
     padding: 5px;
+    padding-bottom: 1px;
   }
   #balance-buttons {
     text-align: right;
@@ -52,41 +73,42 @@
     float: left;
     width: 100px;
     padding: 5px;
+    padding-bottom: 1px;
   }
 </style>
 <body>
-<h1>Cash Register</h1>
   <div id="container">
     <div id="display">$0.00</div>
     <div id="main-button-host">
       <div id="number-buttons">
-        <button type ="button" id="seven">7</button>
-        <button type ="button" id="eight">8</button>
-        <button type ="button" id="nine">9</button>
-        <button type ="button" id="four">4</button>
-        <button type ="button" id="five">5</button>
-        <button type ="button" id="six">6</button>
-        <button type ="button" id="one">1</button>
-        <button type ="button" id="two">2</button>
-        <button type ="button" id="three">3</button>
-        <button type ="button" id="zero">0</button>
-        <button type ="button" id="doublezero">00</button>
-        <button type ="button" id="decimal">.</button>
+        <button type ="button" class="numButton" id="seven">7</button>
+        <button type ="button" class="numButton" id="eight">8</button>
+        <button type ="button" class="numButton" id="nine">9</button>
+        <button type ="button" class="numButton" id="four">4</button>
+        <button type ="button" class="numButton" id="five">5</button>
+        <button type ="button" class="numButton" id="six">6</button>
+        <button type ="button" class="numButton" id="one">1</button>
+        <button type ="button" class="numButton" id="two">2</button>
+        <button type ="button" class="numButton" id="three">3</button>
+        <button type ="button" class="numButton" id="zero">0</button>
+        <button type ="button" class="numButton" id="doublezero">00</button>
+        <button type ="button" class="numButton" id="decimal">.</button>
       </div>
       <div id="operator-buttons">
-        <button type ="button" id="divide">÷</button>
-        <button type ="button" id="multiply">×</button>
-        <button type ="button" id="subtract">-</button>
-        <button type ="button" id="add">+</button>
-        <button type ="button" id="equals">=</button>
+        <button type ="button" class="opButton" id="divide">÷</button>
+        <button type ="button" class="opButton" id="multiply">×</button>
+        <button type ="button" class="opButton" id="subtract">-</button>
+        <button type ="button" class="opButton" id="add">+</button>
+        <button type ="button" class="opButton" id="equals">=</button>
       </div>
       <div id="balance-buttons">
-        <button type ="button" id="clear">clear</button>
-        <button type ="button" id="getbalance">get balance</button>
-        <button type ="button" id="deposit">deposit cash</button>
-        <button type ="button" id="withdraw">withdraw cash</button>
+        <button type ="button" class="balButton" id="clear">clear</button>
+        <button type ="button" class="balButton" id="getbalance">get balance</button>
+        <button type ="button" class="balButton" id="deposit">deposit cash</button>
+        <button type ="button" class="balButton" id="withdraw">withdraw cash</button>
       </div>
     </div>
+    <div id="logo">CASH REGISTER</div>
   </div>
   <script type="text/javascript" src="./js/calculator.js" id="calc"></script>
   <script type="text/javascript" src="./js/cash_register.js"></script>
