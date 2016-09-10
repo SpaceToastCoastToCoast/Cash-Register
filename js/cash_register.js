@@ -42,26 +42,20 @@ function CashRegister() {
 
   //subtract whatever is in our buffer to the calculator's total
   cashRegister.subtract = function() {
-    let s = cashRegister.convertInput();
-    cashRegister.clearDisplay();
-    cashRegister.calc.subtract(s);
-    cashRegister.getTotal();
+    cashRegister.load();
+    opState.push('s');
   };
 
   //multiply whatever is in our buffer to the calculator's total
   cashRegister.multiply = function() {
-    let m = cashRegister.convertInput();
-    cashRegister.clearDisplay();
-    cashRegister.calc.multiply(m);
-    cashRegister.getTotal();
+    cashRegister.load();
+    opState.push('m');
   };
 
   //divide whatever is in our buffer to the calculator's total
   cashRegister.divide = function() {
-    let d = cashRegister.convertInput();
-    cashRegister.clearDisplay();
-    cashRegister.calc.divide(d);
-    cashRegister.getTotal();
+    cashRegister.load();
+    opState.push('d');
   };
 
   cashRegister.equals = function() {
