@@ -21,7 +21,7 @@ function CashRegister() {
   //converts buffer of numbers in the display to a usable format
   cashRegister.convertInput = function() {
     if(buffer.length > 0) {
-      return parseFloat(buffer.join("")) / 100;
+      return parseFloat(buffer.join('')) / 100;
     } else {
       return 0;
     }
@@ -109,8 +109,8 @@ function CashRegister() {
       cashRegister.calc.load(balParse);
     } else {
       clearInterval(upd);
-      document.getElementById('display').innerHTML = "Insufficient funds";
-      setTimeout(function(){upd = setInterval(reg.updateDisplay, 100);}, 1000);
+      document.getElementById('display').innerHTML = 'Insufficient funds';
+      setTimeout(function() {upd = setInterval(reg.updateDisplay, 100);}, 1000);
     }
     cashRegister.calc.saveMemory();
     cashRegister.clearBuffer();
@@ -140,23 +140,23 @@ var reg = CashRegister();
 reg.load();
 var upd = setInterval(reg.updateDisplay, 100);
 
-document.getElementById("equals").addEventListener("click", reg.equals);
-document.getElementById("clear").addEventListener("click", reg.clearBuffer);
-document.getElementById("add").addEventListener("click", reg.add);
-document.getElementById("subtract").addEventListener("click", reg.subtract);
-document.getElementById("multiply").addEventListener("click", reg.multiply);
-document.getElementById("divide").addEventListener("click", reg.divide);
-document.getElementById("getbalance").addEventListener("click", reg.getBalance);
-document.getElementById("deposit").addEventListener("click", reg.depositCash);
-document.getElementById("withdraw").addEventListener("click", reg.withdrawCash);
-document.getElementById("one").addEventListener("click", function(){reg.bufferInput(1);});
-document.getElementById("two").addEventListener("click", function(){reg.bufferInput(2);});
-document.getElementById("three").addEventListener("click", function(){reg.bufferInput(3);});
-document.getElementById("four").addEventListener("click", function(){reg.bufferInput(4);});
-document.getElementById("five").addEventListener("click", function(){reg.bufferInput(5);});
-document.getElementById("six").addEventListener("click", function(){reg.bufferInput(6);});
-document.getElementById("seven").addEventListener("click", function(){reg.bufferInput(7);});
-document.getElementById("eight").addEventListener("click", function(){reg.bufferInput(8);});
-document.getElementById("nine").addEventListener("click", function(){reg.bufferInput(9);});
-document.getElementById("zero").addEventListener("click", function(){reg.bufferInput(0);});
-document.getElementById("doublezero").addEventListener("click", function(){reg.bufferInput(0); reg.bufferInput(0);});
+document.getElementById('equals').addEventListener('click', reg.equals);
+document.getElementById('clear').addEventListener('click', reg.clearBuffer);
+document.getElementById('add').addEventListener('click', reg.add);
+document.getElementById('subtract').addEventListener('click', reg.subtract);
+document.getElementById('multiply').addEventListener('click', reg.multiply);
+document.getElementById('divide').addEventListener('click', reg.divide);
+document.getElementById('getbalance').addEventListener('click', reg.getBalance);
+document.getElementById('deposit').addEventListener('click', reg.depositCash);
+document.getElementById('withdraw').addEventListener('click', reg.withdrawCash);
+document.getElementById('one').addEventListener('click', function() {reg.bufferInput(1);});
+document.getElementById('two').addEventListener('click', function() {reg.bufferInput(2);});
+document.getElementById('three').addEventListener('click', function() {reg.bufferInput(3);});
+document.getElementById('four').addEventListener('click', function() {reg.bufferInput(4);});
+document.getElementById('five').addEventListener('click', function() {reg.bufferInput(5);});
+document.getElementById('six').addEventListener('click', function() {reg.bufferInput(6);});
+document.getElementById('seven').addEventListener('click', function() {reg.bufferInput(7);});
+document.getElementById('eight').addEventListener('click', function() {reg.bufferInput(8);});
+document.getElementById('nine').addEventListener('click', function() {reg.bufferInput(9);});
+document.getElementById('zero').addEventListener('click', function() {reg.bufferInput(0);});
+document.getElementById('doublezero').addEventListener('click', function() {reg.bufferInput(0); reg.bufferInput(0);});
