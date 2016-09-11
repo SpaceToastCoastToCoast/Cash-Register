@@ -71,6 +71,10 @@ function CashRegister() {
   cashRegister.equals = function() {
     let num = cashRegister.convertInput();
     if(operationToPerform !== null) {
+      if(operationToPerform === opState.multiply ||
+        operationToPerform === opState.divide) {
+        num *= 100;
+      }
       cashRegister.calc[operationToPerform](num);
     }
     operationToPerform = null;
@@ -112,7 +116,33 @@ function CashRegister() {
   //write what's in the buffer to the display
   cashRegister.updateDisplay = function() {
     //'$' + toFixed()
-    document.getElementById('display').innerHTML = ('$' + cashRegister.convertInput().toFixed(2));
+    let startChar = '$';
+    let displayedNumber = cashRegister.convertInput();
+    let displayedNumberToFixed = displayedNumber.toFixed(2);
+    let displayField = document.getElementById('display');
+
+    if(operationToPerform !== null) {
+      switch(operationToPerform) {
+        case opState.add:
+          startChar = '+$';
+          displayField.innerHTML = (startChar + displayedNumberToFixed);
+          break;
+        case opState.subtract:
+          startChar = '-$';
+          displayField.innerHTML = (startChar + displayedNumberToFixed);
+          break;
+        case opState.multiply:
+          startChar = '× ';
+          displayField.innerHTML = (startChar + (displayedNumber * 100));
+          break;
+        case opState.divide:
+          startChar = '÷ ';
+          displayField.innerHTML = (startChar + (displayedNumber * 100));
+          break;
+      }
+    } else {
+      displayField.innerHTML = (startChar + displayedNumberToFixed);
+    }
   };
 
   //set buffer to 0
