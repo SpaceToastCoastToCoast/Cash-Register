@@ -11,7 +11,7 @@ function CashRegister() {
   };
   let operationToPerform = null;
   let clearFlag = false;
-  let lastNumberEntered = 0;
+  let opsPressed = 0;
 
   //give the cash register a calculator
   cashRegister.calc = myCalc;
@@ -41,32 +41,60 @@ function CashRegister() {
   };
 
   cashRegister.getTotal = function() {
-    cashRegister.clearBuffer();
+    buffer.splice(1, 64);
     buffer[0] = (cashRegister.calc.getTotal() * 100);
   };
 
   //add whatever is in our buffer to the calculator's total
   cashRegister.add = function() {
-    cashRegister.load();
+    opsPressed++;
+    if(opsPressed > 1) {
+      cashRegister.calc.add(cashRegister.convertInput());
+      cashRegister.clearBuffer();
+    } else {
+      cashRegister.load();
+    }
     operationToPerform = opState.add;
   };
 
   //subtract whatever is in our buffer to the calculator's total
   cashRegister.subtract = function() {
-    cashRegister.load();
+    opsPressed++;
+    if(opsPressed > 1) {
+      cashRegister.calc.subtract(cashRegister.convertInput());
+      cashRegister.clearBuffer();
+    } else {
+      cashRegister.load();
+    }
     operationToPerform = opState.subtract;
   };
 
   //multiply whatever is in our buffer to the calculator's total
   cashRegister.multiply = function() {
-    cashRegister.load();
+    opsPressed++;
+    if(opsPressed > 1) {
+      cashRegister.calc.multiply(cashRegister.convertInput() * 100);
+      cashRegister.clearBuffer();
+    } else {
+      cashRegister.load();
+    }
     operationToPerform = opState.multiply;
   };
 
   //divide whatever is in our buffer to the calculator's total
   cashRegister.divide = function() {
-    cashRegister.load();
+    opsPressed++;
+    if(opsPressed > 1) {
+      cashRegister.calc.divide(cashRegister.convertInput() * 100);
+      cashRegister.clearBuffer();
+    } else {
+      cashRegister.load();
+    }
     operationToPerform = opState.divide;
+  };
+
+  cashRegister.updateQueue = function() {
+
   };
 
   cashRegister.equals = function() {
@@ -81,6 +109,7 @@ function CashRegister() {
     operationToPerform = null;
     cashRegister.getTotal();
     clearFlag = true;
+    opsPressed = 0;
   };
 
   //write what's in the display to the register's balance
