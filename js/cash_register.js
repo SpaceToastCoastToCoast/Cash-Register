@@ -4,10 +4,10 @@ function CashRegister() {
   let cashRegister = {};
   let buffer = [];
   let opState = {
-    add: 'a',
-    subtract: 's',
-    multiply: 'm',
-    divide: 'd'
+    add: 'add',
+    subtract: 'subtract',
+    multiply: 'multiply',
+    divide: 'divide'
   };
   let operationToPerform = null;
   let clearFlag = false;
@@ -71,25 +71,7 @@ function CashRegister() {
   cashRegister.equals = function() {
     let num = cashRegister.convertInput();
     if(operationToPerform !== null) {
-
-      switch(operationToPerform) {
-        case opState.add:
-          cashRegister[calc].add(num);
-          break;
-        case opState.subtract:
-          cashRegister.calc.subtract(num);
-          break;
-        case opState.multiply:
-          cashRegister.calc.multiply(num);
-          break;
-        case opState.divide:
-          cashRegister.calc.divide(num);
-          break;
-        default:
-          cashRegister.calc.load(0);
-          break;
-      }
-
+      cashRegister.calc[operationToPerform](num);
     }
     operationToPerform = null;
     cashRegister.getTotal();
