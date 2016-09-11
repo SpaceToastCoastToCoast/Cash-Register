@@ -11,6 +11,7 @@ function CashRegister() {
   };
   let operationToPerform = null;
   let clearFlag = false;
+  let lastNumberEntered = 0;
 
   //give the cash register a calculator
   cashRegister.calc = myCalc;
@@ -36,7 +37,7 @@ function CashRegister() {
   //load the value in the buffer into the calculator
   cashRegister.load = function() {
     cashRegister.calc.load(cashRegister.convertInput());
-    cashRegister.clearBuffer();
+    clearFlag = true;
   };
 
   cashRegister.getTotal = function() {
