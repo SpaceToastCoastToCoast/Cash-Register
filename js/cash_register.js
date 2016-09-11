@@ -3,7 +3,13 @@ const myCalc = calculator();
 function CashRegister() {
   let cashRegister = {};
   let buffer = [];
-  let opState = [];
+  let opState = {
+    add: 'a',
+    subtract: 's',
+    multiply: 'm',
+    divide: 'd'
+  };
+  let operationToPerform = null;
   let clearFlag = false;
 
   //give the cash register a calculator
@@ -41,52 +47,51 @@ function CashRegister() {
   //add whatever is in our buffer to the calculator's total
   cashRegister.add = function() {
     cashRegister.load();
-    opState.push('a');
+    operationToPerform = opState.add;
   };
 
   //subtract whatever is in our buffer to the calculator's total
   cashRegister.subtract = function() {
     cashRegister.load();
-    opState.push('s');
+    operationToPerform = opState.subtract;
   };
 
   //multiply whatever is in our buffer to the calculator's total
   cashRegister.multiply = function() {
     cashRegister.load();
-    opState.push('m');
+    operationToPerform = opState.multiply;
   };
 
   //divide whatever is in our buffer to the calculator's total
   cashRegister.divide = function() {
     cashRegister.load();
-    opState.push('d');
+    operationToPerform = opState.divide;
   };
 
   cashRegister.equals = function() {
     let num = cashRegister.convertInput();
-    if(opState.length > 0) {
-      for(let i = 0; i < opState.length; i++)
-      {
-        switch(opState[i]) {
-          case 'a':
-            cashRegister.calc.add(num);
-            break;
-          case 's':
-            cashRegister.calc.subtract(num);
-            break;
-          case 'm':
-            cashRegister.calc.multiply(num);
-            break;
-          case 'd':
-            cashRegister.calc.divide(num);
-            break;
-          default:
-            cashRegister.calc.load(0);
-            break;
-        }
+    if(operationToPerform !== null) {
+
+      switch(operationToPerform) {
+        case opState.add:
+          cashRegister[calc].add(num);
+          break;
+        case opState.subtract:
+          cashRegister.calc.subtract(num);
+          break;
+        case opState.multiply:
+          cashRegister.calc.multiply(num);
+          break;
+        case opState.divide:
+          cashRegister.calc.divide(num);
+          break;
+        default:
+          cashRegister.calc.load(0);
+          break;
       }
+
     }
-    opState = [];
+    operationToPerform = null;
     cashRegister.getTotal();
     clearFlag = true;
   };
