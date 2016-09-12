@@ -59,7 +59,8 @@ function CashRegister() {
     opsPressed++;
     if(opsPressed > 1) {
       cashRegister.calc.add(cashRegister.convertInput());
-      cashRegister.clearBuffer();
+      cashRegister.getTotal();
+      clearFlag = true;
     } else {
       cashRegister.load();
     }
@@ -75,7 +76,8 @@ function CashRegister() {
     opsPressed++;
     if(opsPressed > 1) {
       cashRegister.calc.subtract(cashRegister.convertInput());
-      cashRegister.clearBuffer();
+      cashRegister.getTotal();
+      clearFlag = true;
     } else {
       cashRegister.load();
     }
