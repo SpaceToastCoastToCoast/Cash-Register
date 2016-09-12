@@ -12,12 +12,17 @@ function CashRegister() {
   let operationToPerform = null;
   let clearFlag = false;
   let opsPressed = 0;
+  let isUpdateStopped = false;
 
   //give the cash register a calculator
   cashRegister.calc = myCalc;
 
   //add each number pressed to a buffer
   cashRegister.bufferInput = function (input) {
+    if(isUpdateStopped) {
+      isUpdateStopped = false;
+      displayUpdateInterval = setInterval(reg.updateDisplay, 100);
+    }
     if(clearFlag) {
       cashRegister.clearBuffer();
       clearFlag = false;
@@ -47,6 +52,10 @@ function CashRegister() {
 
   //add whatever is in our buffer to the calculator's total
   cashRegister.add = function() {
+    if(isUpdateStopped) {
+      isUpdateStopped = false;
+      displayUpdateInterval = setInterval(reg.updateDisplay, 100);
+    }
     opsPressed++;
     if(opsPressed > 1) {
       cashRegister.calc.add(cashRegister.convertInput());
@@ -59,6 +68,10 @@ function CashRegister() {
 
   //subtract whatever is in our buffer to the calculator's total
   cashRegister.subtract = function() {
+    if(isUpdateStopped) {
+      isUpdateStopped = false;
+      displayUpdateInterval = setInterval(reg.updateDisplay, 100);
+    }
     opsPressed++;
     if(opsPressed > 1) {
       cashRegister.calc.subtract(cashRegister.convertInput());
@@ -71,6 +84,11 @@ function CashRegister() {
 
   //multiply whatever is in our buffer to the calculator's total
   cashRegister.multiply = function() {
+    if(isUpdateStopped) {
+      isUpdateStopped = false;
+      displayUpdateInterval = setInterval(reg.updateDisplay, 100);
+    }
+    cashRegister.clearDisplay('×');
     opsPressed++;
     if(opsPressed > 1) {
       cashRegister.calc.multiply(cashRegister.convertInput() * 100);
@@ -83,6 +101,11 @@ function CashRegister() {
 
   //divide whatever is in our buffer to the calculator's total
   cashRegister.divide = function() {
+    if(isUpdateStopped) {
+      isUpdateStopped = false;
+      displayUpdateInterval = setInterval(reg.updateDisplay, 100);
+    }
+    cashRegister.clearDisplay('÷');
     opsPressed++;
     if(opsPressed > 1) {
       cashRegister.calc.divide(cashRegister.convertInput() * 100);
@@ -98,6 +121,10 @@ function CashRegister() {
   };
 
   cashRegister.equals = function() {
+    if(isUpdateStopped) {
+      isUpdateStopped = false;
+      displayUpdateInterval = setInterval(reg.updateDisplay, 100);
+    }
     let num = cashRegister.convertInput();
     if(operationToPerform !== null) {
       if(operationToPerform === opState.multiply ||
@@ -129,9 +156,9 @@ function CashRegister() {
     if(balParse >= 0) {
       cashRegister.calc.load(balParse);
     } else {
-      clearInterval(upd);
+      clearInterval(displayUpdateInterval);
       document.getElementById('display').innerHTML = 'Insufficient funds';
-      setTimeout(function() {upd = setInterval(reg.updateDisplay, 100);}, 1000);
+      setTimeout(function() {displayUpdateInterval = setInterval(reg.updateDisplay, 100);}, 1000);
     }
     cashRegister.calc.saveMemory();
     cashRegister.clearBuffer();
@@ -180,12 +207,23 @@ function CashRegister() {
     buffer = [];
   };
 
+  //set display to 0
+  cashRegister.clearDisplay = function(opChar) {
+
+
+    let displayField = document.getElementById('display');
+    clearInterval(displayUpdateInterval);
+    displayField.innerHTML = opChar;
+    isUpdateStopped = true;
+
+  };
+
   return cashRegister;
 }
 
 var reg = CashRegister();
 reg.load();
-var upd = setInterval(reg.updateDisplay, 100);
+var displayUpdateInterval = setInterval(reg.updateDisplay, 100);
 
 document.getElementById('equals').addEventListener('click', reg.equals);
 document.getElementById('clear').addEventListener('click', reg.clearBuffer);
