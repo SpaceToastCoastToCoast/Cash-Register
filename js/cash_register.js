@@ -200,6 +200,7 @@ function CashRegister() {
           break;
       }
     } else {
+      startChar = '$';
       displayField.innerHTML = (startChar + displayedNumberToFixed);
     }
   };
@@ -220,6 +221,15 @@ function CashRegister() {
 
   };
 
+  cashRegister.clearButton = function() {
+    if(isUpdateStopped) {
+      isUpdateStopped = false;
+      displayUpdateInterval = setInterval(reg.updateDisplay, 100);
+    }
+    operationToPerform = null;
+    cashRegister.clearBuffer();
+  };
+
   return cashRegister;
 }
 
@@ -228,7 +238,7 @@ reg.load();
 var displayUpdateInterval = setInterval(reg.updateDisplay, 100);
 
 document.getElementById('equals').addEventListener('click', reg.equals);
-document.getElementById('clear').addEventListener('click', reg.clearBuffer);
+document.getElementById('clear').addEventListener('click', reg.clearButton);
 document.getElementById('add').addEventListener('click', reg.add);
 document.getElementById('subtract').addEventListener('click', reg.subtract);
 document.getElementById('multiply').addEventListener('click', reg.multiply);
